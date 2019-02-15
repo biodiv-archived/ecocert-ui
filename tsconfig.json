@@ -1,0 +1,33 @@
+{
+  "include": ["./src/**/*"],
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "lib": ["dom", "es2017"],
+    "jsx": "react",
+    "strict": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "noImplicitAny": false,
+    "baseUrl": ".",
+    "paths": {
+      ".@components": ["./src/components"],
+      ".@components/*": ["./src/components/*"],
+      ".@images": ["./src/images"],
+      ".@images/*": ["./src/images/*"],
+      ".@interfaces": ["./src/interfaces"],
+      ".@interfaces/*": ["./src/interfaces/*"],
+      ".@modules": ["./src/modules"],
+      ".@modules/*": ["./src/modules/*"],
+      ".@pages": ["./src/pages"],
+      ".@pages/*": ["./src/pages/*"],
+      ".@styles": ["./src/styles"],
+      ".@styles/*": ["./src/styles/*"],
+      ".@utils": ["./src/utils"],
+      ".@utils/*": ["./src/utils/*"]
+    }
+  }
+}
