@@ -1,5 +1,6 @@
 import { navigate } from "gatsby";
 import React, { Component } from "react";
+import BootstrapTable from "react-bootstrap-table-next";
 import ReactDataGrid from "react-data-grid";
 
 import { IBatching, IBatchingFuncs } from "../../interfaces/batching.interface";
@@ -16,30 +17,46 @@ interface IProps extends IBatchingFuncs {
 export default class BatchingTableComponent extends Component<IProps, IState> {
   columns = [
     {
-      key: "collectionId",
-      name: "Collection Id"
+      dataField: "collectionId",
+      text: "Collection Id"
     },
     {
-      key: "farmer_userId",
-      name: "Farmer User Id"
+      dataField: "farmer_userId",
+      text: "Farmer User Id"
     },
     {
-      key: "collectionCenter_ccId",
-      name: "Collection Center Id"
+      dataField: "collectionCenter_ccId",
+      text: "Collection Center Id"
     },
     {
-      key: "quantity",
-      name: "Quantity"
+      dataField: "quantity",
+      text: "Quantity"
     },
     {
-      key: "moistureContent",
-      name: "Moisture Content"
+      dataField: "moistureContent",
+      text: "Moisture Content"
     },
     {
-      key: "status",
-      name: "Status"
+      dataField: "status",
+      text: "Status"
     }
   ];
+
+  selectRow = {
+    mode: "checkbox",
+    clickToSelect: true,
+    onSelect: (row, isSelect, rowIndex, e) => {
+      console.log(row);
+      console.log(isSelect);
+      console.log(rowIndex);
+      console.log(e);
+    },
+    onSelectAll: (isSelect, rows, e) => {
+      console.log(isSelect);
+      console.log(rows);
+      console.log(e);
+    }
+  };
 
   constructor(props) {
     super(props);
@@ -85,6 +102,7 @@ export default class BatchingTableComponent extends Component<IProps, IState> {
   };
 
   render() {
+    console.log(this.selectRow);
     return (
       <>
         <div className="row mb-3">
@@ -102,6 +120,12 @@ export default class BatchingTableComponent extends Component<IProps, IState> {
             </button>
           </div>
         </div>
+        <BootstrapTable
+          keyField="collectionId"
+          data={this.props.batching.batchingData}
+          columns={this.columns}
+          selectRow={this.selectRow}
+        />
         <ReactDataGrid
           rowKey="collectionId"
           columns={this.columns}
