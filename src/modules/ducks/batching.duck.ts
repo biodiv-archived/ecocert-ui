@@ -17,7 +17,7 @@ export const getBatchingData = reset => {
       .then(response => {
         dispatch({
           type: GET_BATCHING_DATA,
-          payload: { reset, data: transformBatchingData(response.data) }
+          payload: { reset, ...transformBatchingData(response.data) }
         });
         // TODO: Show success message and redirect
       })
@@ -61,18 +61,26 @@ export const createBatchfromCollections = collectionsData => {
 };
 
 const transformBatchingData = data => {
-  return data.map(o => ({
-    collectionId: o.collectionId,
-    farmer_userId: o.farmer.userId,
-    collectionCenter_ccId: o.collectionCenter.ccId,
-    quantity: o.quantity,
-    moistureContent: o.moistureContent,
-    status: o.status
-  }));
+  const nonSelectable: any = [];
+  const rows = data.map(o => {
+    if (o.status !== "COLLECTED") {
+      nonSelectable.push(o.collectionId);
+    }
+    return {
+      collectionId: o.collectionId,
+      farmer_userId: o.farmer.userId,
+      collectionCenter_ccId: o.collectionCenter.ccId,
+      quantity: o.quantity,
+      moistureContent: o.moistureContent,
+      status: o.status
+    };
+  });
+  return { rows, nonSelectable };
 };
 
 const initialState: IBatching = {
-  batchingData: []
+  batchingData: [],
+  nonSelectable: []
 };
 
 export default (state = initialState, action) => {
@@ -81,8 +89,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         batchingData: action.payload.reset
-          ? action.payload.data
-          : [...state.batchingData, ...action.payload.data]
+          ? action.payload.rows
+          : [...state.batchingData, ...action.payload.rows],
+        nonSelectable: action.payload.reset
+          ? action.payload.nonSelectable
+          : [...state.nonSelectable, ...action.payload.nonSelectable]
       };
     default:
       return state;

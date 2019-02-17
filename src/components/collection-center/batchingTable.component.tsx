@@ -1,13 +1,12 @@
 import { navigate } from "gatsby";
 import React, { Component } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import ReactDataGrid from "react-data-grid";
 
 import { IBatching, IBatchingFuncs } from "../../interfaces/batching.interface";
+import { TABLE_HEADER_FIELDS } from "./batchingTable.constants";
 
 interface IState {
-  selectedIndexes;
-  selectedIndexesIds;
+  sCollections;
 }
 
 interface IProps extends IBatchingFuncs {
@@ -15,83 +14,38 @@ interface IProps extends IBatchingFuncs {
 }
 
 export default class BatchingTableComponent extends Component<IProps, IState> {
-  columns = [
-    {
-      dataField: "collectionId",
-      text: "Collection Id"
-    },
-    {
-      dataField: "farmer_userId",
-      text: "Farmer User Id"
-    },
-    {
-      dataField: "collectionCenter_ccId",
-      text: "Collection Center Id"
-    },
-    {
-      dataField: "quantity",
-      text: "Quantity"
-    },
-    {
-      dataField: "moistureContent",
-      text: "Moisture Content"
-    },
-    {
-      dataField: "status",
-      text: "Status"
-    }
-  ];
-
-  selectRow = {
-    mode: "checkbox",
-    clickToSelect: true,
-    onSelect: (row, isSelect, rowIndex, e) => {
-      console.log(row);
-      console.log(isSelect);
-      console.log(rowIndex);
-      console.log(e);
-    },
-    onSelectAll: (isSelect, rows, e) => {
-      console.log(isSelect);
-      console.log(rows);
-      console.log(e);
-    }
-  };
+  selectRow;
 
   constructor(props) {
     super(props);
     this.state = {
-      selectedIndexes: [],
-      selectedIndexesIds: []
+      sCollections: []
     };
-    this.props.getBatchingData(true);
+    this.selectRow = {
+      mode: "checkbox",
+      clickToSelect: true,
+      onSelect: (row, isSelect, rowIndex, e) => {
+        this.onSelectedRowsUpdated([row], isSelect);
+      },
+      onSelectAll: (isSelect, rows, e) => {
+        this.onSelectedRowsUpdated(rows, isSelect);
+      },
+      nonSelectable: this.props.batching.nonSelectable
+    };
   }
 
-  rowGetter = i => {
-    return this.props.batching.batchingData[i];
+  componentDidMount = () => {
+    console.log("componentDidMount");
+    this.props.getBatchingData(true);
   };
 
-  onRowsSelected = rows => {
-    this.setState({
-      selectedIndexes: this.state.selectedIndexes.concat(
-        rows.map(r => r.rowIdx)
-      ),
-      selectedIndexesIds: this.state.selectedIndexesIds.concat(
-        rows.map(r => r.row.collectionId)
-      )
-    });
-  };
-
-  onRowsDeselected = rows => {
-    const rowIndexes = rows.map(r => r.rowIdx);
-    const rowIndexesIds = rows.map(r => r.row.collectionId);
-    this.setState({
-      selectedIndexes: this.state.selectedIndexes.filter(
-        i => rowIndexes.indexOf(i) === -1
-      ),
-      selectedIndexesIds: this.state.selectedIndexesIds.filter(
-        i => rowIndexesIds.indexOf(i) === -1
-      )
+  onSelectedRowsUpdated = (rows, isAdded) => {
+    rows.forEach(r => {
+      this.setState(s => ({
+        sCollections: isAdded
+          ? [...s.sCollections, r.collectionId]
+          : s.sCollections.filter(i => i !== r.collectionId)
+      }));
     });
   };
 
@@ -102,7 +56,6 @@ export default class BatchingTableComponent extends Component<IProps, IState> {
   };
 
   render() {
-    console.log(this.selectRow);
     return (
       <>
         <div className="row mb-3">
@@ -110,9 +63,9 @@ export default class BatchingTableComponent extends Component<IProps, IState> {
             <h4>Collections</h4>
           </div>
           <div className="col-6 text-right">
-            {this.state.selectedIndexes.length} collections(s) selected
+            {this.state.sCollections.length} collections(s) selected
             <button
-              disabled={this.state.selectedIndexes.length < 1}
+              disabled={this.state.sCollections.length < 1}
               className="btn btn-primary ml-4"
               onClick={this.createBatch}
             >
@@ -123,24 +76,8 @@ export default class BatchingTableComponent extends Component<IProps, IState> {
         <BootstrapTable
           keyField="collectionId"
           data={this.props.batching.batchingData}
-          columns={this.columns}
+          columns={TABLE_HEADER_FIELDS}
           selectRow={this.selectRow}
-        />
-        <ReactDataGrid
-          rowKey="collectionId"
-          columns={this.columns}
-          sortable={true}
-          rowGetter={this.rowGetter}
-          rowsCount={this.props.batching.batchingData.length}
-          rowSelection={{
-            showCheckbox: true,
-            enableShiftSelect: true,
-            onRowsSelected: this.onRowsSelected,
-            onRowsDeselected: this.onRowsDeselected,
-            selectBy: {
-              indexes: this.state.selectedIndexes
-            }
-          }}
         />
       </>
     );
