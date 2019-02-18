@@ -72,7 +72,9 @@ const transformBatchingData = data => {
       collectionCenter_ccId: o.collectionCenter.ccId,
       quantity: o.quantity,
       moistureContent: o.moistureContent,
-      status: o.status
+      date: o.date,
+      status: o.status,
+      batchId: o.batchId
     };
   });
   return { rows, nonSelectable };

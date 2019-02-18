@@ -20,7 +20,15 @@ export const TABLE_HEADER_FIELDS = [
     text: "Moisture Content"
   },
   {
+    dataField: "date",
+    text: "Date"
+  },
+  {
     dataField: "status",
     text: "Status"
+  },
+  {
+    dataField: "batchId",
+    text: "Batch ID"
   }
 ];
