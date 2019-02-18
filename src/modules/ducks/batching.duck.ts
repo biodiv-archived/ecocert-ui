@@ -5,10 +5,10 @@ import { notify } from "react-notify-toast";
 import { IBatching } from "../../interfaces/batching.interface";
 import { ENDPOINT, HEADERS, REQUEST_TYPE, TOAST_TYPE } from "../core.constants";
 
-const GET_BATCHING_DATA = "getBatchingData";
+const GET_COLLECTION_DATA = "getCollectionData";
 const CREATE_BATCH = "createBatch";
 
-export const getBatchingData = reset => {
+export const getCollectionData = reset => {
   return dispatch => {
     axios({
       url: `${ENDPOINT}/collect/all`,
@@ -16,15 +16,15 @@ export const getBatchingData = reset => {
     })
       .then(response => {
         dispatch({
-          type: GET_BATCHING_DATA,
-          payload: { reset, ...transformBatchingData(response.data) }
+          type: GET_COLLECTION_DATA,
+          payload: { reset, ...transformCollectionData(response.data) }
         });
         // TODO: Show success message and redirect
       })
       .catch(error => {
         console.error(error);
         dispatch({
-          type: GET_BATCHING_DATA,
+          type: GET_COLLECTION_DATA,
           payload: { reset, data: [] }
         });
         // TODO: Show error message
@@ -60,7 +60,7 @@ export const createBatchfromCollections = collectionsData => {
   };
 };
 
-const transformBatchingData = data => {
+const transformCollectionData = data => {
   const nonSelectable: any = [];
   const rows = data.map(o => {
     if (o.status !== "COLLECTED") {
@@ -81,18 +81,18 @@ const transformBatchingData = data => {
 };
 
 const initialState: IBatching = {
-  batchingData: [],
+  collectionData: [],
   nonSelectable: []
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_BATCHING_DATA:
+    case GET_COLLECTION_DATA:
       return {
         ...state,
-        batchingData: action.payload.reset
+        collectionData: action.payload.reset
           ? action.payload.rows
-          : [...state.batchingData, ...action.payload.rows],
+          : [...state.collectionData, ...action.payload.rows],
         nonSelectable: action.payload.reset
           ? action.payload.nonSelectable
           : [...state.nonSelectable, ...action.payload.nonSelectable]

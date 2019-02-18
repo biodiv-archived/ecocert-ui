@@ -18,7 +18,8 @@
     "ter-arrow-parens": false,
     "trailing-comma": false,
     "no-increment-decrement": false,
-    "no-string-literal": false
+    "no-string-literal": false,
+    "max-line-length": [true, 120]
   },
   "rulesDirectory": []
 }

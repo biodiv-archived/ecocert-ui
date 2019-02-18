@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 
-import BatchingTableComponent from ".@components/collection-center/batchingTable.component";
+import CreateBatchingTableComponent from ".@components/collection-center/createBatchingTable.component";
 import Layout from ".@components/core/layout.component";
 import { IBatching, IBatchingFuncs } from ".@interfaces/batching.interface";
 import actions from ".@modules/actions";
@@ -14,7 +14,7 @@ class BatchingPage extends PureComponent<IProps> {
   render() {
     return (
       <Layout {...this.props}>
-        <BatchingTableComponent {...this.props} />
+        <CreateBatchingTableComponent {...this.props} />
       </Layout>
     );
   }

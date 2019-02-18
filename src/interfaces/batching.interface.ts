@@ -1,9 +1,9 @@
 export interface IBatching {
-  batchingData,
+  collectionData,
   nonSelectable
 }
 
 export interface IBatchingFuncs {
-  getBatchingData;
+  getCollectionData;
   createBatchfromCollections;
 }

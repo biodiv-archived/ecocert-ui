@@ -2,8 +2,8 @@ import { navigate } from "gatsby";
 import React, { Component } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 
-import { IBatching, IBatchingFuncs } from "../../interfaces/batching.interface";
-import { TABLE_HEADER_FIELDS } from "./batchingTable.constants";
+import { TABLE_HEADER_FIELDS } from "./createBatchingTable.constants";
+import { IBatching, IBatchingFuncs } from ".@interfaces/batching.interface";
 
 interface IState {
   sCollections;
@@ -13,7 +13,7 @@ interface IProps extends IBatchingFuncs {
   batching: IBatching;
 }
 
-export default class BatchingTableComponent extends Component<IProps, IState> {
+export default class CreateBatchingTableComponent extends Component<IProps, IState> {
   selectRow;
 
   constructor(props) {
@@ -36,7 +36,7 @@ export default class BatchingTableComponent extends Component<IProps, IState> {
 
   componentDidMount = () => {
     console.log("componentDidMount");
-    this.props.getBatchingData(true);
+    this.props.getCollectionData(true);
   };
 
   onSelectedRowsUpdated = (rows, isAdded) => {
@@ -75,7 +75,7 @@ export default class BatchingTableComponent extends Component<IProps, IState> {
         </div>
         <BootstrapTable
           keyField="collectionId"
-          data={this.props.batching.batchingData}
+          data={this.props.batching.collectionData}
           columns={TABLE_HEADER_FIELDS}
           selectRow={this.selectRow}
         />
