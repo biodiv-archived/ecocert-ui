@@ -7,6 +7,9 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
+    "carbon-components": "^9.76.7",
+    "carbon-components-react": "^6.96.0",
+    "carbon-icons": "^7.0.7",
     "gatsby": "^2.0.119",
     "gatsby-image": "^2.0.29",
     "gatsby-plugin-manifest": "^2.0.17",

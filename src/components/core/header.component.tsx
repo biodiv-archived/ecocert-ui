@@ -1,13 +1,9 @@
+import {
+  Header,
+  HeaderNavigation
+} from "carbon-components-react/lib/components/UIShell";
 import { Link } from "gatsby";
 import React, { Component } from "react";
-import {
-  Collapse,
-  Nav,
-  Navbar,
-  NavbarBrand,
-  NavbarToggler,
-  NavItem
-} from "reactstrap";
 
 interface IProps {
   siteTitle;
@@ -17,7 +13,7 @@ interface IState {
   isOpen;
 }
 
-export default class Header extends Component<IProps, IState> {
+export default class HeaderComponent extends Component<IProps, IState> {
   constructor(props) {
     super(props);
 
@@ -35,24 +31,25 @@ export default class Header extends Component<IProps, IState> {
 
   render() {
     return (
-      <Navbar color="primary" dark expand="md">
-        <div className="container">
-          <Link className="navbar-brand" to="/">
-            {this.props.siteTitle}
-          </Link>
-          <NavbarBrand href="/" />
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <Link className="nav-link" to="/collection-center">
-                  Collection Center
-                </Link>
-              </NavItem>
-            </Nav>
-          </Collapse>
-        </div>
-      </Navbar>
+      <Header
+        sitetitle={this.props.siteTitle}
+        aria-label={this.props.siteTitle}
+      >
+        <Link className="bx--header__name" to="/">
+          {this.props.siteTitle}
+        </Link>
+        <HeaderNavigation aria-label={this.props.siteTitle}>
+          <li>
+            <Link
+              className="bx--header__menu-item"
+              role="menuitem"
+              to="/collection-center"
+            >
+              Collection Center
+            </Link>
+          </li>
+        </HeaderNavigation>
+      </Header>
     );
   }
 }

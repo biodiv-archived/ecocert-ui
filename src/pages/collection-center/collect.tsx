@@ -1,3 +1,13 @@
+import {
+  Button,
+  Form,
+  FormGroup,
+  NumberInput,
+  Select,
+  SelectItem,
+  TextArea,
+  TextInput
+} from "carbon-components-react";
 import React, { PureComponent } from "react";
 import {
   FieldControl,
@@ -37,13 +47,21 @@ class CollectPage extends PureComponent<IProps> {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.info("Form values", this.collectForm.value);
-    this.props.collect(this.collectForm.value);
+    console.log(e);
+    // console.info("Form values", this.collectForm.value);
+    // this.props.collect(this.collectForm.value);
   };
 
   render() {
     return (
       <Layout {...this.props}>
+        <Form onSubmit={this.handleSubmit}>
+          <NumberInput
+            className="some-class"
+            id="number-input-1"
+            label="Number Input"
+          />
+        </Form>
         <FieldGroup
           control={this.collectForm}
           render={({ get, invalid }) => (

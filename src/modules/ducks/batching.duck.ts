@@ -67,7 +67,7 @@ const transformCollectionData = data => {
       nonSelectable.push(o.collectionId);
     }
     return {
-      collectionId: o.collectionId,
+      id: o.collectionId,
       farmer_userId: o.farmer.userId,
       collectionCenter_ccId: o.collectionCenter.ccId,
       quantity: o.quantity,

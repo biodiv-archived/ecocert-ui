@@ -30,18 +30,25 @@ export const dateInput = ({ handler, touched, hasError, meta }) => (
 );
 
 export const numberInput = ({ handler, touched, hasError, meta }) => (
-  <>
-    <label>{meta.label}</label>
-    <input
-      type="number"
-      className="form-control"
-      placeholder={`Enter ${meta.label}`}
-      {...handler()}
-    />
-    <div className="invalid-feedback">
-      {touched && hasError("required") && `${meta.label} is required`}
+  <fieldset className="bx--fieldset">
+    <div className="bx--form-item">
+      <div
+        className="bx--number bx--number--helpertext"
+        {...(touched && hasError("required") ? { "data-invalid": true } : {})}
+      >
+        <label className="bx--label">{meta.label}</label>
+        <input
+          type="number"
+          className="form-control"
+          placeholder={`Enter ${meta.label}`}
+          {...handler()}
+        />
+        {touched && hasError("required") && (
+          <div className="bx--form-requirement">{meta.label} is required</div>
+        )}
+      </div>
     </div>
-  </>
+  </fieldset>
 );
 
 export const selectInput = ({ handler, touched, hasError, meta }) => (

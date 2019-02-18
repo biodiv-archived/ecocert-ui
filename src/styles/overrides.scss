@@ -5,11 +5,11 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 :root {
-  --ecocert-spacing: 16px;
+  --eco-header-spacing: 48px;
 }
 
-.container-spacing-initial {
-  margin-top: var(--ecocert-spacing);
+.eco--grid {
+  margin-top: var(--eco-header-spacing);
 }
 
 .invalid-feedback {
