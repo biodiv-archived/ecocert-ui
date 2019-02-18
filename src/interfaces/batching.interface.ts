@@ -1,5 +1,6 @@
 export interface IBatching {
-  batchingData
+  batchingData,
+  nonSelectable
 }
 
 export interface IBatchingFuncs {

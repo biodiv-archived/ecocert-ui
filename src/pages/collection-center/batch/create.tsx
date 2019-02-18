@@ -24,12 +24,11 @@ class CollectionCenterBatchCreatePage extends PureComponent<IProps> {
     { name: "Count", value: "COUNT" },
     { name: "Manual", value: "MANUAL" }
   ];
+
   showMoistureContent = false;
+
   collectForm = FormBuilder.group({
-    collectionIds: [
-      window.history.state.selectedIndexesIds,
-      Validators.required
-    ],
+    collectionIds: [window.history.state.sCollections, Validators.required],
     moistureContentCalculationType: [
       this.moistureCalculationTypeOptions[0].value,
       Validators.required
