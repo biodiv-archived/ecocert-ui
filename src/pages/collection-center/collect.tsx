@@ -1,13 +1,4 @@
-import {
-  Button,
-  Form,
-  FormGroup,
-  NumberInput,
-  Select,
-  SelectItem,
-  TextArea,
-  TextInput
-} from "carbon-components-react";
+import { Button } from "carbon-components-react";
 import React, { PureComponent } from "react";
 import {
   FieldControl,
@@ -48,63 +39,60 @@ class CollectPage extends PureComponent<IProps> {
   handleSubmit = e => {
     e.preventDefault();
     console.log(e);
-    // console.info("Form values", this.collectForm.value);
-    // this.props.collect(this.collectForm.value);
+    console.info("Form values", this.collectForm.value);
+    this.props.collect(this.collectForm.value);
   };
 
   render() {
     return (
       <Layout {...this.props}>
-        <Form onSubmit={this.handleSubmit}>
-          <NumberInput
-            className="some-class"
-            id="number-input-1"
-            label="Number Input"
-          />
-        </Form>
         <FieldGroup
           control={this.collectForm}
           render={({ get, invalid }) => (
             <>
-              <h4 className="mb-3">Collect</h4>
-              <form onSubmit={this.handleSubmit}>
-                <div className="row">
-                  <div className="col-md-6 mb-3">
+              <h1 className="eco--title">Collect</h1>
+              <form className="bx--form" onSubmit={this.handleSubmit}>
+                <div className="bx--row">
+                  <div className="bx--col-md-6 bx--col-xs-12">
                     <FieldControl
                       name="membershipId"
                       render={textInput}
                       meta={{ label: "Membership Id" }}
                     />
                   </div>
-                  <div className="col-md-6 mb-3">
+                  <div className="bx--col-md-6 bx--col-xs-12">
                     <FieldControl
                       name="ccCode"
                       render={numberInput}
                       meta={{ label: "CC Code" }}
                     />
                   </div>
-                  <div className="col-md-6 mb-3">
+                </div>
+                <div className="bx--row">
+                  <div className="bx--col-md-6 bx--col-xs-12">
                     <FieldControl
                       name="quantity"
                       render={numberInput}
                       meta={{ label: "Quantity" }}
                     />
                   </div>
-                  <div className="col-md-6 mb-3">
+                  <div className="bx--col-md-6 bx--col-xs-12">
                     <FieldControl
                       name="moistureContent"
                       render={numberInput}
                       meta={{ label: "Moisture Content" }}
                     />
                   </div>
-                  <div className="col-md-6 mb-3">
+                </div>
+                <div className="bx--row">
+                  <div className="bx--col-md-6 bx--col-xs-12">
                     <FieldControl
                       name="date"
                       render={dateInput}
                       meta={{ label: "Date" }}
                     />
                   </div>
-                  <div className="col-md-6 mb-3">
+                  <div className="bx--col-md-6 bx--col-xs-12">
                     <FieldControl
                       name="status"
                       render={selectInput}
@@ -115,14 +103,13 @@ class CollectPage extends PureComponent<IProps> {
                     />
                   </div>
                 </div>
-                <hr className="mb4" />
-                <button
+                <Button
                   className="btn btn-primary btn-lg btn-block"
                   type="submit"
                   disabled={invalid}
                 >
                   Submit
-                </button>
+                </Button>
               </form>
             </>
           )}

@@ -15,7 +15,9 @@ const {
   TableCell,
   TableHeader,
   TableSelectAll,
-  TableSelectRow
+  TableSelectRow,
+  TableToolbar,
+  TableToolbarContent
 } = DataTable;
 
 interface IState {
@@ -65,21 +67,17 @@ export default class CreateBatchingTableComponent extends Component<
     });
   };
 
-  createBatch = () => {
+  createBatch = selectedRows => () => {
     navigate("/collection-center/batch/create", {
-      state: this.state
+      state: { sCollections: selectedRows.map(r => r.id) }
     });
-  };
-
-  handleCreateBatch = selectedRows => () => {
-    console.log(selectedRows);
   };
 
   render() {
     return (
       <>
         <DataTable
-          rows={this.props.batching.collectionData}
+          rows={this.props.batching.collectionData || []}
           headers={TABLE_HEADER_FIELDS}
           render={({
             rows,
@@ -89,25 +87,19 @@ export default class CreateBatchingTableComponent extends Component<
             selectedRows
           }) => (
             <React.Fragment>
-              <div className="row mb-3">
-                <div className="col-6">
-                  <h4>Collections</h4>
-                </div>
-                <div className="col-6 text-right">
-                  {this.state.sCollections.length} collections(s) selected
-                  <button
-                    disabled={this.state.sCollections.length < 1}
-                    className="btn btn-primary ml-4"
-                    onClick={this.createBatch}
-                  >
-                    Create Batch
-                  </button>
-                </div>
-              </div>
-              <Button onClick={this.handleCreateBatch(selectedRows)}>
-                Select All
-              </Button>
-              <TableContainer title="DataTable">
+              <TableContainer>
+                <TableToolbar>
+                  <h1 className="eco--title">Collections</h1>
+                  <TableToolbarContent>
+                    <Button
+                      className="eco--spacing-top"
+                      disabled={selectedRows.length < 1}
+                      onClick={this.createBatch(selectedRows)}
+                    >
+                      Create Batch
+                    </Button>
+                  </TableToolbarContent>
+                </TableToolbar>
                 <Table>
                   <TableHead>
                     <TableRow>
@@ -123,7 +115,14 @@ export default class CreateBatchingTableComponent extends Component<
                   <TableBody>
                     {rows.map(row => (
                       <TableRow key={row.id}>
-                        <TableSelectRow {...getSelectionProps({ row })} />
+                        <TableSelectRow
+                          {...getSelectionProps({ row })}
+                          {...(this.props.batching.nonSelectable.includes(
+                            row.id
+                          )
+                            ? { disabled: true }
+                            : {})}
+                        />
                         {row.cells.map(cell => (
                           <TableCell key={cell.id}>{cell.value}</TableCell>
                         ))}
@@ -135,12 +134,12 @@ export default class CreateBatchingTableComponent extends Component<
             </React.Fragment>
           )}
         />
-        <BootstrapTable
+        {/* <BootstrapTable
           keyField="collectionId"
           data={this.props.batching.collectionData}
           columns={TABLE_HEADER_FIELDS}
           selectRow={this.selectRow}
-        />
+        /> */}
       </>
     );
   }

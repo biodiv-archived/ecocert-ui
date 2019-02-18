@@ -4,10 +4,6 @@ $feature-flags: (
   ui-shell: true
 );
 
-.bx--header__name--prefix {
-  display: none;
-}
-
 // @import "../../node_modules/bootstrap/scss/bootstrap";
 
 @import "../../node_modules/carbon-components/scss/globals/scss/styles.scss";

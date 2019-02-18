@@ -19,7 +19,7 @@ const layout = ({ children }) => (
     render={data => (
       <>
         <HeaderComponent siteTitle={data.site.siteMetadata.title} />
-        <div className="bx--grid eco--grid">{children}</div>
+        <div className="container bx--grid eco--grid">{children}</div>
       </>
     )}
   />
