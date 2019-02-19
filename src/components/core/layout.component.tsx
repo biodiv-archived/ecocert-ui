@@ -1,4 +1,5 @@
-import "../../styles/core.scss";
+import ".@styles/global.scss";
+import ".@styles/theme.scss";
 
 import { graphql, StaticQuery } from "gatsby";
 import React from "react";

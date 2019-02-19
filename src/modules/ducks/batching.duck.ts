@@ -41,7 +41,7 @@ export const createBatchfromCollections = collectionsData => {
       data: collectionsData
     })
       .then(response => {
-        notify.show("🎉 Batch Created Successfully", TOAST_TYPE.SUCCESS);
+        notify.show("✅ Batch Created Successfully", TOAST_TYPE.SUCCESS);
         navigate("/collection-center/batch");
         console.info(response);
       })

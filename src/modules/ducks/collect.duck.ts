@@ -1,6 +1,8 @@
 import axios from "axios";
+import { navigate } from "gatsby";
+import { notify } from "react-notify-toast";
 
-import { ENDPOINT, HEADERS, REQUEST_TYPE } from "../core.constants";
+import { ENDPOINT, HEADERS, REQUEST_TYPE, TOAST_TYPE } from "../core.constants";
 
 const COLLECT_DO = "collect";
 
@@ -14,10 +16,16 @@ export const collect = state => {
     })
       .then(response => {
         console.info(response);
+        notify.show("✅ Collection done successfully", TOAST_TYPE.SUCCESS);
+        navigate("/collection-center/batch");
         // TODO: Show success message and redirect
       })
       .catch(error => {
         console.error(error);
+        notify.show(
+          "❌ There was some error while collecting",
+          TOAST_TYPE.ERROR
+        );
         // TODO: Show error message
       });
     dispatch({ type: COLLECT_DO, payload: {} });
