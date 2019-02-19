@@ -25,15 +25,26 @@ class CollectPage extends PureComponent<IProps> {
     { name: "Not Collected", value: "NOT_COLLECTED" }
   ];
 
-  collectForm = FormBuilder.group({
-    membershipId: ["", Validators.required],
-    ccCode: ["", Validators.required],
-    quantity: ["", Validators.required],
-    moistureContent: ["", Validators.required],
-    date: ["", Validators.required],
-    status: [this.statusOptions[0].value, Validators.required],
-    timestamp: [new Date(), Validators.required]
-  });
+  collectForm;
+
+  constructor(props) {
+    super(props);
+    this.collectForm = FormBuilder.group({
+      membershipId: ["", Validators.required],
+      ccCode: ["", Validators.required],
+      quantity: ["", Validators.required],
+      moistureContent: ["", Validators.required],
+      date: [this.getToday(), Validators.required],
+      status: [this.statusOptions[0].value, Validators.required],
+      timestamp: [new Date(), Validators.required]
+    });
+  }
+
+  getToday() {
+    const local = new Date();
+    local.setMinutes(local.getMinutes() - local.getTimezoneOffset())
+    return local.toJSON().slice(0, 10);
+  }
 
   handleSubmit = e => {
     e.preventDefault();

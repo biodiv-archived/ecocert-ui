@@ -75,7 +75,7 @@ export default class CreateBatchingTableComponent extends Component<IProps, ISta
         </div>
         <BootstrapTable
           keyField="collectionId"
-          data={this.props.batching.collectionData}
+          data={this.props.batching.collectionData || []}
           columns={TABLE_HEADER_FIELDS}
           selectRow={this.selectRow}
         />

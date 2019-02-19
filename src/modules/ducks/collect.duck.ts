@@ -1,3 +1,4 @@
+import { navigate } from "gatsby";
 import axios from "axios";
 
 import { ENDPOINT, HEADERS, REQUEST_TYPE } from "../core.constants";
@@ -14,6 +15,7 @@ export const collect = state => {
     })
       .then(response => {
         console.info(response);
+        navigate("/collection-center");
         // TODO: Show success message and redirect
       })
       .catch(error => {
