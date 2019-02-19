@@ -1,7 +1,6 @@
 import { Button, DataTable } from "carbon-components-react";
 import { navigate } from "gatsby";
 import React, { Component } from "react";
-import BootstrapTable from "react-bootstrap-table-next";
 
 import { TABLE_HEADER_FIELDS } from "./createBatchingTable.constants";
 import { IBatching, IBatchingFuncs } from ".@interfaces/batching.interface";

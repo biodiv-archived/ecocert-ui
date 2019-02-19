@@ -64,10 +64,10 @@ const transformCollectionData = data => {
   const nonSelectable: any = [];
   const rows = data.map(o => {
     if (o.status !== "COLLECTED") {
-      nonSelectable.push(o.collectionId);
+      nonSelectable.push(o.collectionId.toString());
     }
     return {
-      id: o.collectionId,
+      id: o.collectionId.toString(),
       farmer_userId: o.farmer.userId,
       collectionCenter_ccId: o.collectionCenter.ccId,
       quantity: o.quantity,
