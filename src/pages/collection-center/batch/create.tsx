@@ -1,3 +1,4 @@
+import { Button } from "carbon-components-react";
 import React, { PureComponent } from "react";
 import { If } from "react-control-statements";
 import {
@@ -55,48 +56,44 @@ class CollectionCenterBatchCreatePage extends PureComponent<IProps> {
           control={this.collectForm}
           render={({ get, invalid }) => (
             <>
-              <h4 className="mb-3">Create Collection(s) Batch</h4>
-              <div className="row">
-                <div className="col-md-4 offset-4">
-                  <form onSubmit={this.handleSubmit}>
-                    <div className="row">
-                      <div className="mb-3 col-12">
-                        <FieldControl
-                          name="factoryId"
-                          render={numberInput}
-                          meta={{ label: "Factory Id" }}
-                        />
-                      </div>
-                      <div className="mb-3 col-12">
-                        <FieldControl
-                          name="moistureContentCalculationType"
-                          render={selectInput}
-                          meta={{
-                            label: "Moisture Content Calculation Type",
-                            options: this.moistureCalculationTypeOptions
-                          }}
-                        />
-                      </div>
-                      <div className="mb-3 col-12">
-                        <If condition={this.showMoistureContent}>
-                          <FieldControl
-                            name="moistureContent"
-                            render={numberInput}
-                            meta={{ label: "Moisture Content" }}
-                          />
-                        </If>
-                      </div>
-                    </div>
-                    <button
-                      className="btn btn-primary btn-lg btn-block"
-                      type="submit"
-                      disabled={invalid}
-                    >
-                      Submit
-                    </button>
-                  </form>
+              <h1 className="eco--title">Create batch from Collections</h1>
+              <form className="bx--form" onSubmit={this.handleSubmit}>
+                <div className="bx--row">
+                  <div className="bx--col-md-4 bx--col-xs-12">
+                    <FieldControl
+                      name="factoryId"
+                      render={numberInput}
+                      meta={{ label: "Factory Id" }}
+                    />
+                  </div>
+                  <div className="bx--col-md-4 bx--col-xs-12">
+                    <FieldControl
+                      name="moistureContentCalculationType"
+                      render={selectInput}
+                      meta={{
+                        label: "Moisture Content Calculation Type",
+                        options: this.moistureCalculationTypeOptions
+                      }}
+                    />
+                  </div>
+                  <div className="bx--col-md-4 bx--col-xs-12">
+                    <If condition={this.showMoistureContent}>
+                      <FieldControl
+                        name="moistureContent"
+                        render={numberInput}
+                        meta={{ label: "Moisture Content" }}
+                      />
+                    </If>
+                  </div>
                 </div>
-              </div>
+                <Button
+                  className="btn btn-primary btn-lg btn-block"
+                  type="submit"
+                  disabled={invalid}
+                >
+                  Submit
+                </Button>
+              </form>
             </>
           )}
         />
