@@ -62,21 +62,23 @@ export const createBatchfromCollections = collectionsData => {
 
 const transformCollectionData = data => {
   const nonSelectable: any = [];
-  const rows = data.map(o => {
-    if (o.status !== "COLLECTED") {
-      nonSelectable.push(o.collectionId.toString());
-    }
-    return {
-      id: o.collectionId.toString(),
-      farmer_userId: o.farmer.userId,
-      collectionCenter_ccId: o.collectionCenter.ccId,
-      quantity: o.quantity,
-      moistureContent: o.moistureContent,
-      date: o.date,
-      status: o.status,
-      batchId: o.batchId
-    };
-  });
+  const rows = data
+    .map(o => {
+      if (o.status !== "COLLECTED") {
+        nonSelectable.push(o.collectionId.toString());
+      }
+      return {
+        id: o.collectionId.toString(),
+        farmer_userId: o.farmer.userId,
+        collectionCenter_ccId: o.collectionCenter.ccId,
+        quantity: o.quantity,
+        moistureContent: o.moistureContent,
+        date: o.date,
+        status: o.status,
+        batchId: o.batchId
+      };
+    })
+    .reverse();
   return { rows, nonSelectable };
 };
 

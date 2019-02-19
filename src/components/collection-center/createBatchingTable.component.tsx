@@ -19,51 +19,19 @@ const {
   TableToolbarContent
 } = DataTable;
 
-interface IState {
-  sCollections;
-}
-
 interface IProps extends IBatchingFuncs {
   batching: IBatching;
 }
 
-export default class CreateBatchingTableComponent extends Component<
-  IProps,
-  IState
-> {
+export default class CreateBatchingTableComponent extends Component<IProps> {
   selectRow;
 
   constructor(props) {
     super(props);
-    this.state = {
-      sCollections: []
-    };
-    this.selectRow = {
-      mode: "checkbox",
-      clickToSelect: true,
-      onSelect: (row, isSelect, rowIndex, e) => {
-        this.onSelectedRowsUpdated([row], isSelect);
-      },
-      onSelectAll: (isSelect, rows, e) => {
-        this.onSelectedRowsUpdated(rows, isSelect);
-      },
-      nonSelectable: this.props.batching.nonSelectable
-    };
   }
 
   componentDidMount = () => {
-    console.log("componentDidMount");
     this.props.getCollectionData(true);
-  };
-
-  onSelectedRowsUpdated = (rows, isAdded) => {
-    rows.forEach(r => {
-      this.setState(s => ({
-        sCollections: isAdded
-          ? [...s.sCollections, r.collectionId]
-          : s.sCollections.filter(i => i !== r.collectionId)
-      }));
-    });
   };
 
   createBatch = selectedRows => () => {
@@ -102,13 +70,13 @@ export default class CreateBatchingTableComponent extends Component<
                 <Table>
                   <TableHead>
                     <TableRow>
-                      <TableSelectAll {...getSelectionProps()} />
+                      {/* <TableSelectAll {...getSelectionProps()} /> */}
+                      <TableHeader />
                       {headers.map(header => (
                         <TableHeader {...getHeaderProps({ header })}>
                           {header.header}
                         </TableHeader>
                       ))}
-                      <TableHeader />
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -133,12 +101,6 @@ export default class CreateBatchingTableComponent extends Component<
             </React.Fragment>
           )}
         />
-        {/* <BootstrapTable
-          keyField="collectionId"
-          data={this.props.batching.collectionData}
-          columns={TABLE_HEADER_FIELDS}
-          selectRow={this.selectRow}
-        /> */}
       </>
     );
   }
