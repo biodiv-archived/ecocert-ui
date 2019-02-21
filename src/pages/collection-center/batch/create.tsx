@@ -1,15 +1,11 @@
 import { Button } from "carbon-components-react";
 import React, { PureComponent } from "react";
 import { If } from "react-control-statements";
-import {
-  FieldControl,
-  FieldGroup,
-  FormBuilder,
-  Validators
-} from "react-reactive-form";
+import { FieldControl, FieldGroup, FormBuilder, Validators } from "react-reactive-form";
 import { connect } from "react-redux";
 
 import Layout from ".@components/core/layout.component";
+import SEO from ".@components/core/seo.component";
 import { numberInput, selectInput } from ".@components/formInput.component";
 import { IBatchingFuncs } from ".@interfaces/batching.interface";
 import actions from ".@modules/actions";
@@ -52,6 +48,7 @@ class CollectionCenterBatchCreatePage extends PureComponent<IProps> {
       });
     return (
       <Layout {...this.props}>
+        <SEO title="Create Batch" />
         <FieldGroup
           control={this.collectForm}
           render={({ get, invalid }) => (

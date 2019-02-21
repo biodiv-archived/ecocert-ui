@@ -1,5 +1,5 @@
+import ".@styles/_theme.scss";
 import ".@styles/global.scss";
-import ".@styles/theme.scss";
 
 import { graphql, StaticQuery } from "gatsby";
 import React from "react";
@@ -20,7 +20,7 @@ const layout = ({ children }) => (
     render={data => (
       <>
         <HeaderComponent siteTitle={data.site.siteMetadata.title} />
-        <div className="container bx--grid eco--grid">{children}</div>
+        <div className="bx--grid eco--grid">{children}</div>
       </>
     )}
   />

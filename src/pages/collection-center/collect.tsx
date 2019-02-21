@@ -4,6 +4,7 @@ import { FieldControl, FieldGroup, FormBuilder, Validators } from "react-reactiv
 import { connect } from "react-redux";
 
 import Layout from ".@components/core/layout.component";
+import SEO from ".@components/core/seo.component";
 import { dateInput, numberInput, selectInput, textInput } from ".@components/formInput.component";
 import { ICollectFuncs } from ".@interfaces/collect.interface";
 import actions from ".@modules/actions";
@@ -47,6 +48,7 @@ class CollectPage extends PureComponent<IProps> {
   render() {
     return (
       <Layout {...this.props}>
+        <SEO title="Collection Center" />
         <FieldGroup
           control={this.collectForm}
           render={({ get, invalid }) => (

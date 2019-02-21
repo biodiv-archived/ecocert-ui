@@ -5,6 +5,7 @@ import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 
 import Layout from ".@components/core/layout.component";
+import SEO from ".@components/core/seo.component";
 import { ICounter, ICounterFuncs } from ".@interfaces/counter.interface";
 import actions from ".@modules/actions";
 
@@ -16,6 +17,7 @@ class CollectionCenterPage extends PureComponent<IProps> {
   render() {
     return (
       <Layout {...this.props}>
+        <SEO title="Collection Center" />
         <div className="bx--row">
           <div className="bx--col-md-3 bx--col-xs-12 eco--spacing-top">
             <Link
@@ -33,7 +35,10 @@ class CollectionCenterPage extends PureComponent<IProps> {
             </Link>
           </div>
           <div className="bx--col-md-3 bx--col-xs-12 eco--spacing-top">
-            <Link className="bx--tile eco--card" to="/collection-center/farmer/add">
+            <Link
+              className="bx--tile eco--card"
+              to="/collection-center/farmer/add"
+            >
               <h2>Add Farmer</h2>
               <p>Create farmer Id &rarr;</p>
             </Link>
