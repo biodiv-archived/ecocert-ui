@@ -1,10 +1,20 @@
 import { Button } from "carbon-components-react";
 import React, { PureComponent } from "react";
-import { FieldControl, FieldGroup, FormBuilder, Validators } from "react-reactive-form";
+import {
+  FieldControl,
+  FieldGroup,
+  FormBuilder,
+  Validators
+} from "react-reactive-form";
 import { connect } from "react-redux";
 
 import Layout from ".@components/core/layout.component";
-import { dateInput, passwordInput, selectInput, textInput } from ".@components/formInput.component";
+import {
+  dateInput,
+  passwordInput,
+  selectInput,
+  textInput
+} from ".@components/formInput.component";
 import { IFarmerFuncs } from ".@interfaces/farmer.interface";
 import actions from ".@modules/actions";
 
@@ -36,7 +46,7 @@ class CollectionCenterFarmerAddPage extends PureComponent<IProps> {
       userName: ["", Validators.required],
       password: ["", Validators.required],
       dateOfBirth: ["", Validators.required],
-      gender: ["", Validators.required],
+      gender: [this.genderOptions[0].value, Validators.required],
       cellNumber: ["", Validators.required],
       email: ["", [Validators.email]],
       village: ["", Validators.required],
