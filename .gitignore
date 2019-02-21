@@ -60,6 +60,7 @@ package-lock.json
 # gatsby files
 .cache/
 public
+static/LICENSES.txt
 
 # Mac files
 .DS_Store

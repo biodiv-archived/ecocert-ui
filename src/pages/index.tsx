@@ -15,6 +15,7 @@ class Index extends PureComponent<IProps> {
     return (
       <Layout {...this.props}>
         <SEO title="Home Page" />
+        <a target="_blank" href="LICENSES.txt">open-source licenses</a>
         {/* <div>
           <p>Count: {this.props.counter.count}</p>
           <button onClick={this.props.increment}>Increment</button>
