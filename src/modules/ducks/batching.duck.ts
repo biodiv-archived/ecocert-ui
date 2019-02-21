@@ -3,7 +3,7 @@ import { navigate } from "gatsby";
 import { notify } from "react-notify-toast";
 
 import { IBatching } from "../../interfaces/batching.interface";
-import { ENDPOINT, HEADERS, REQUEST_TYPE, TOAST_TYPE } from "../core.constants";
+import { HEADERS, REQUEST_TYPE, TOAST_TYPE } from "../core.constants";
 
 const GET_COLLECTION_DATA = "getCollectionData";
 const CREATE_BATCH = "createBatch";
@@ -11,7 +11,7 @@ const CREATE_BATCH = "createBatch";
 export const getCollectionData = reset => {
   return dispatch => {
     axios({
-      url: `${ENDPOINT}/collect/all`,
+      url: `${process.env.ENDPOINT}/collect/all`,
       method: REQUEST_TYPE.GET
     })
       .then(response => {
@@ -35,7 +35,7 @@ export const getCollectionData = reset => {
 export const createBatchfromCollections = collectionsData => {
   return dispatch => {
     axios({
-      url: `${ENDPOINT}/batch`,
+      url: `${process.env.ENDPOINT}/batch`,
       method: REQUEST_TYPE.POST,
       headers: HEADERS,
       data: collectionsData

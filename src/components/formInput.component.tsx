@@ -18,6 +18,24 @@ export const textInput = ({ handler, touched, hasError, meta }) => (
   </fieldset>
 );
 
+export const passwordInput = ({ handler, touched, hasError, meta }) => (
+  <fieldset className="bx--fieldset">
+    <div className="bx--form-item">
+      <label className="bx--label">{meta.label}</label>
+      <input
+        type="password"
+        className="bx--text-input"
+        placeholder={`Enter ${meta.label}`}
+        {...handler()}
+        {...(touched && hasError("required") ? { "data-invalid": true } : {})}
+      />
+      {touched && hasError("required") && (
+        <div className="bx--form-requirement">{meta.label} is required</div>
+      )}
+    </div>
+  </fieldset>
+);
+
 export const dateInput = ({ handler, touched, hasError, meta }) => (
   <fieldset className="bx--fieldset">
     <div className="bx--form-item">

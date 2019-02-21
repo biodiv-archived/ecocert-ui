@@ -1,0 +1,15 @@
+@import "../../styles/variables";
+
+.eco--card {
+  padding: 1.2rem !important;
+  text-decoration: none;
+  color: $text-01;
+  h2 {
+    display: block;
+    font-weight: bold;
+  }
+  p {
+    margin-top: calc(var(--eco-header-spacing) / 4);
+    font-weight: 100;
+  }
+}

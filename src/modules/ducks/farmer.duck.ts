@@ -4,34 +4,31 @@ import { notify } from "react-notify-toast";
 
 import { HEADERS, REQUEST_TYPE, TOAST_TYPE } from "../core.constants";
 
-const COLLECT_DO = "collect";
+const ADD_FARMER = "addFarmer";
 
-export const collect = state => {
+export const addFarmer = state => {
   return dispatch => {
     axios({
-      url: `${process.env.ENDPOINT}/collect`,
+      url: `${process.env.ENDPOINT}/farmer`,
       method: REQUEST_TYPE.POST,
       headers: HEADERS,
       data: state
     })
       .then(response => {
+        notify.show("🎉 Farmer added successfully", TOAST_TYPE.SUCCESS);
+        navigate("/collection-center");
         console.info(response);
-        notify.show("✅ Collection done successfully", TOAST_TYPE.SUCCESS);
-        navigate("/collection-center/batch");
-        // TODO: Show success message and redirect
       })
       .catch(error => {
-        console.error(error);
         notify.show(
-          "❌ There was some error while collecting",
+          "❌ There was some error while adding farmer",
           TOAST_TYPE.ERROR
         );
-        // TODO: Show error message
+        console.error(error);
       });
-    dispatch({ type: COLLECT_DO, payload: {} });
+    dispatch({ type: ADD_FARMER, payload: {} });
   };
 };
-
 const initialState = {};
 
 export default (state = initialState, action) => {

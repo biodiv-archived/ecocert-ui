@@ -1,4 +1,3 @@
-export const ENDPOINT = "http://ec2-13-233-42-61.ap-south-1.compute.amazonaws.com/ecocert/api";
 export const HEADERS = {
   "Content-Type": "application/json"
 };

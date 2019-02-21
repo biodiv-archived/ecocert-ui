@@ -6,8 +6,8 @@
   "author": "Harsh Zalavadiya <harsh@strandls.com>",
   "dependencies": {
     "axios": "^0.18.0",
-    "carbon-components": "^9.76.7",
-    "carbon-components-react": "^6.96.0",
+    "carbon-components": "^9.79.2",
+    "carbon-components-react": "^6.98.0",
     "carbon-icons": "^7.0.7",
     "gatsby": "^2.0.119",
     "gatsby-image": "^2.0.29",
@@ -38,7 +38,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "NODE_ENV=production gatsby build",
     "develop": "gatsby develop",
     "start": "npm run develop",
     "serve": "gatsby serve",
