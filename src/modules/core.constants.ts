@@ -1,4 +1,3 @@
-export const ENDPOINT = "http://localhost:8080/ecocert/api";
 export const HEADERS = {
   "Content-Type": "application/json"
 };

@@ -1,34 +1,34 @@
 export const TABLE_HEADER_FIELDS = [
   {
-    dataField: "collectionId",
-    text: "Collection Id"
+    key: "id",
+    header: "Collection Id"
   },
   {
-    dataField: "farmer_userId",
-    text: "Farmer User Id"
+    key: "farmer_userId",
+    header: "Farmer User Id"
   },
   {
-    dataField: "collectionCenter_ccId",
-    text: "Collection Center Id"
+    key: "collectionCenter_ccId",
+    header: "Collection Center Id"
   },
   {
-    dataField: "quantity",
-    text: "Quantity"
+    key: "quantity",
+    header: "Quantity"
   },
   {
-    dataField: "moistureContent",
-    text: "Moisture Content"
+    key: "moistureContent",
+    header: "Moisture Content"
   },
   {
-    dataField: "date",
-    text: "Date"
+    key: "date",
+    header: "Date"
   },
   {
-    dataField: "status",
-    text: "Status"
+    key: "status",
+    header: "Status"
   },
   {
-    dataField: "batchId",
-    text: "Batch ID"
+    key: "batchId",
+    header: "Batch ID"
   }
 ];

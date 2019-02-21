@@ -1,0 +1,50 @@
+@import "./variables";
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+:root {
+  --eco-spacing: 24px;
+  --eco-header-spacing: 48px;
+}
+
+.eco--grid {
+  margin-top: var(--eco-header-spacing);
+}
+
+.eco--w100 {
+  width: 100%;
+}
+
+.eco--title {
+  padding-top: calc(var(--eco-header-spacing) / 2);
+  padding-bottom: calc(var(--eco-header-spacing) / 4);
+}
+
+.eco--form-required {
+  color: $support-01;
+  display: inline;
+  margin-left: 5px;
+}
+
+.eco--form-title {
+  padding-bottom: calc(var(--eco-header-spacing) / 4);
+}
+
+.eco--spacing-top {
+  margin-top: var(--eco-spacing);
+}
+
+.invalid-feedback {
+  display: initial;
+}
+
+.toast-notification {
+  z-index: 6001 !important;
+  span {
+    background-color: $brand-01 !important;
+  }
+}

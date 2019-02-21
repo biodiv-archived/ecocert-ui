@@ -1,19 +1,10 @@
+import { Button } from "carbon-components-react";
 import React, { PureComponent } from "react";
-import {
-  FieldControl,
-  FieldGroup,
-  FormBuilder,
-  Validators
-} from "react-reactive-form";
+import { FieldControl, FieldGroup, FormBuilder, Validators } from "react-reactive-form";
 import { connect } from "react-redux";
 
 import Layout from ".@components/core/layout.component";
-import {
-  dateInput,
-  numberInput,
-  selectInput,
-  textInput
-} from ".@components/formInput.component";
+import { dateInput, numberInput, selectInput, textInput } from ".@components/formInput.component";
 import { ICollectFuncs } from ".@interfaces/collect.interface";
 import actions from ".@modules/actions";
 
@@ -40,14 +31,15 @@ class CollectPage extends PureComponent<IProps> {
     });
   }
 
-  getToday() {
+  getToday = () => {
     const local = new Date();
-    local.setMinutes(local.getMinutes() - local.getTimezoneOffset())
+    local.setMinutes(local.getMinutes() - local.getTimezoneOffset());
     return local.toJSON().slice(0, 10);
-  }
+  };
 
   handleSubmit = e => {
     e.preventDefault();
+    console.log(e);
     console.info("Form values", this.collectForm.value);
     this.props.collect(this.collectForm.value);
   };
@@ -59,45 +51,49 @@ class CollectPage extends PureComponent<IProps> {
           control={this.collectForm}
           render={({ get, invalid }) => (
             <>
-              <h4 className="mb-3">Collect</h4>
-              <form onSubmit={this.handleSubmit}>
-                <div className="row">
-                  <div className="col-md-6 mb-3">
+              <h1 className="eco--title">Collect</h1>
+              <form className="bx--form" onSubmit={this.handleSubmit}>
+                <div className="bx--row">
+                  <div className="bx--col-md-6 bx--col-xs-12">
                     <FieldControl
                       name="membershipId"
                       render={textInput}
                       meta={{ label: "Membership Id" }}
                     />
                   </div>
-                  <div className="col-md-6 mb-3">
+                  <div className="bx--col-md-6 bx--col-xs-12">
                     <FieldControl
                       name="ccCode"
                       render={numberInput}
                       meta={{ label: "CC Code" }}
                     />
                   </div>
-                  <div className="col-md-6 mb-3">
+                </div>
+                <div className="bx--row">
+                  <div className="bx--col-md-6 bx--col-xs-12">
                     <FieldControl
                       name="quantity"
                       render={numberInput}
                       meta={{ label: "Quantity" }}
                     />
                   </div>
-                  <div className="col-md-6 mb-3">
+                  <div className="bx--col-md-6 bx--col-xs-12">
                     <FieldControl
                       name="moistureContent"
                       render={numberInput}
                       meta={{ label: "Moisture Content" }}
                     />
                   </div>
-                  <div className="col-md-6 mb-3">
+                </div>
+                <div className="bx--row">
+                  <div className="bx--col-md-6 bx--col-xs-12">
                     <FieldControl
                       name="date"
                       render={dateInput}
                       meta={{ label: "Date" }}
                     />
                   </div>
-                  <div className="col-md-6 mb-3">
+                  <div className="bx--col-md-6 bx--col-xs-12">
                     <FieldControl
                       name="status"
                       render={selectInput}
@@ -108,14 +104,13 @@ class CollectPage extends PureComponent<IProps> {
                     />
                   </div>
                 </div>
-                <hr className="mb4" />
-                <button
+                <Button
                   className="btn btn-primary btn-lg btn-block"
                   type="submit"
                   disabled={invalid}
                 >
                   Submit
-                </button>
+                </Button>
               </form>
             </>
           )}

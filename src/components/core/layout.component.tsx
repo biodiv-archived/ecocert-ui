@@ -1,9 +1,10 @@
-import "../../styles/core.scss";
+import ".@styles/global.scss";
+import ".@styles/theme.scss";
 
 import { graphql, StaticQuery } from "gatsby";
 import React from "react";
 
-import Header from "./header.component";
+import HeaderComponent from "./header.component";
 
 const layout = ({ children }) => (
   <StaticQuery
@@ -18,9 +19,8 @@ const layout = ({ children }) => (
     `}
     render={data => (
       <>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <div className="container container-spacing-initial">{children}</div>
-        {/* <footer>&copy; {new Date().getFullYear()}</footer> */}
+        <HeaderComponent siteTitle={data.site.siteMetadata.title} />
+        <div className="container bx--grid eco--grid">{children}</div>
       </>
     )}
   />
