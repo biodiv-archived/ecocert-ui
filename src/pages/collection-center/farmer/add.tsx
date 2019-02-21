@@ -1,11 +1,21 @@
 import { Button } from "carbon-components-react";
 import React, { PureComponent } from "react";
-import { FieldControl, FieldGroup, FormBuilder, Validators } from "react-reactive-form";
+import {
+  FieldControl,
+  FieldGroup,
+  FormBuilder,
+  Validators
+} from "react-reactive-form";
 import { connect } from "react-redux";
 
 import Layout from ".@components/core/layout.component";
 import SEO from ".@components/core/seo.component";
-import { dateInput, passwordInput, selectInput, textInput } from ".@components/formInput.component";
+import {
+  dateInput,
+  passwordInput,
+  selectInput,
+  textInput
+} from ".@components/formInput.component";
 import { IFarmerFuncs } from ".@interfaces/farmer.interface";
 import actions from ".@modules/actions";
 
@@ -70,25 +80,23 @@ class CollectionCenterFarmerAddPage extends PureComponent<IProps> {
             <>
               <h1 className="eco--title">Add Farmer</h1>
               <form className="bx--form" onSubmit={this.handleSubmit}>
+                <h3 className="eco--form-title">Login details</h3>
                 <div className="bx--row">
-                  <div className="bx--col-md-12">
+                  <div className="bx--col-md-4 bx--col-xs-12">
                     <FieldControl
                       name="membershipId"
                       render={textInput}
                       meta={{ label: "Membership Id" }}
                     />
                   </div>
-                </div>
-                <h3 className="eco--form-title">Login details</h3>
-                <div className="bx--row">
-                  <div className="bx--col-md-6 bx--col-xs-12">
+                  <div className="bx--col-md-4 bx--col-xs-12">
                     <FieldControl
                       name="userName"
                       render={textInput}
                       meta={{ label: "User name" }}
                     />
                   </div>
-                  <div className="bx--col-md-6 bx--col-xs-12">
+                  <div className="bx--col-md-4 bx--col-xs-12">
                     <FieldControl
                       name="password"
                       render={passwordInput}
