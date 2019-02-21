@@ -1,4 +1,3 @@
-import { navigate } from "gatsby";
 import axios from "axios";
 import { navigate } from "gatsby";
 import { notify } from "react-notify-toast";
