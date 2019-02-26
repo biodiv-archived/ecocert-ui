@@ -4,8 +4,8 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Ecocert`,
-    description: `Ecocert`,
+    title: `Cropcert`,
+    description: `Cropcert`,
     author: `@strandls`
   },
   plugins: [

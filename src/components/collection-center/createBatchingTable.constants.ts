@@ -16,10 +16,6 @@ export const TABLE_HEADER_FIELDS = [
     header: "Quantity"
   },
   {
-    key: "moistureContent",
-    header: "Moisture Content"
-  },
-  {
     key: "date",
     header: "Date"
   },

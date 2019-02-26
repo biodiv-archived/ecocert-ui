@@ -40,12 +40,36 @@ export default class HeaderComponent extends Component<IProps, IState> {
         </Link>
         <HeaderNavigation aria-label={this.props.siteTitle}>
           <li>
+            <Link className="bx--header__menu-item" role="menuitem" to="/wip">
+              Eco Certification
+            </Link>
+          </li>
+          <li>
+            <Link className="bx--header__menu-item" role="menuitem" to="/wip">
+              Social Certification
+            </Link>
+          </li>
+          <li>
             <Link
               className="bx--header__menu-item"
               role="menuitem"
               to="/collection-center"
             >
-              Collection Center
+              Traceability
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="bx--header__menu-item"
+              role="menuitem"
+              to="/farmers"
+            >
+              Farmers
+            </Link>
+          </li>
+          <li>
+            <Link className="bx--header__menu-item" role="menuitem" to="/wip">
+              Users
             </Link>
           </li>
         </HeaderNavigation>

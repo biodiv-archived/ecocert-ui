@@ -1,4 +1,4 @@
-import "./collection-center.scss";
+import "./collection-center/collection-center.scss";
 
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
@@ -18,21 +18,16 @@ class CollectionCenterPage extends PureComponent<IProps> {
     return (
       <Layout>
         <SEO title="Collection Center" />
-        <h1 className="eco--title">Collection Center</h1>
+        <h1 className="eco--title">Farmer(s)</h1>
         <div className="bx--row">
           <DashListComponent
-            title="Collect"
-            description="Coffee from farmers"
-            to="/collection-center/collect"
+            title="Add Farmer"
+            description="Create farmer Id"
+            to="/collection-center/farmer/add"
           />
           <DashListComponent
-            title="Create Batch"
-            description="Create batch from collections"
-            to="/collection-center/batch"
-          />
-          <DashListComponent
-            title="View Batch"
-            description="View Batches"
+            title="View Farmers"
+            description="View farmers"
             to="/wip"
           />
         </div>

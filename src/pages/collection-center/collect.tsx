@@ -1,11 +1,21 @@
 import { Button } from "carbon-components-react";
 import React, { PureComponent } from "react";
-import { FieldControl, FieldGroup, FormBuilder, Validators } from "react-reactive-form";
+import {
+  FieldControl,
+  FieldGroup,
+  FormBuilder,
+  Validators
+} from "react-reactive-form";
 import { connect } from "react-redux";
 
 import Layout from ".@components/core/layout.component";
 import SEO from ".@components/core/seo.component";
-import { dateInput, numberInput, selectInput, textInput } from ".@components/formInput.component";
+import {
+  dateInput,
+  numberInput,
+  selectInput,
+  textInput
+} from ".@components/formInput.component";
 import { ICollectFuncs } from ".@interfaces/collect.interface";
 import actions from ".@modules/actions";
 
@@ -25,7 +35,7 @@ class CollectPage extends PureComponent<IProps> {
       membershipId: ["", Validators.required],
       ccCode: ["", Validators.required],
       quantity: ["", Validators.required],
-      moistureContent: ["", Validators.required],
+      moistureContent: ["1", Validators.required],
       date: [this.getToday(), Validators.required],
       status: [this.statusOptions[0].value, Validators.required],
       timestamp: [new Date(), Validators.required]
@@ -81,20 +91,13 @@ class CollectPage extends PureComponent<IProps> {
                   </div>
                   <div className="bx--col-md-6 bx--col-xs-12">
                     <FieldControl
-                      name="moistureContent"
-                      render={numberInput}
-                      meta={{ label: "Moisture Content" }}
-                    />
-                  </div>
-                </div>
-                <div className="bx--row">
-                  <div className="bx--col-md-6 bx--col-xs-12">
-                    <FieldControl
                       name="date"
                       render={dateInput}
                       meta={{ label: "Date" }}
                     />
                   </div>
+                </div>
+                <div className="bx--row">
                   <div className="bx--col-md-6 bx--col-xs-12">
                     <FieldControl
                       name="status"
