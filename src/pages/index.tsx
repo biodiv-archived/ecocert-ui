@@ -1,5 +1,8 @@
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
+import { Carousel } from "react-responsive-carousel";
 
 import Layout from ".@components/core/layout.component";
 import SEO from ".@components/core/seo.component";
@@ -13,16 +16,16 @@ interface IProps extends ICounterFuncs {
 class Index extends PureComponent<IProps> {
   render() {
     return (
-      <Layout {...this.props}>
-        <SEO title="Home Page" />
-        <a target="_blank" href="LICENSES.txt">open-source licenses</a>
-        {/* <div>
-          <p>Count: {this.props.counter.count}</p>
-          <button onClick={this.props.increment}>Increment</button>
-          <button onClick={this.props.decrement}>Decrement</button>
-        </div>
-        <a onClick={() => navigate("/a")}>programmatic redirect</a> */}
-      </Layout>
+      <>
+        <Layout {...this.props}>
+          <SEO title="Home Page" />
+        </Layout>
+        <Carousel showArrows={true} showThumbs={false}>
+          <div style={{ background: "url(1.jpg)" }} />
+          <div style={{ background: "url(2.jpg)" }} />
+          <div style={{ background: "url(3.jpg)" }} />
+        </Carousel>
+      </>
     );
   }
 }

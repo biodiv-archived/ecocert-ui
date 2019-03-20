@@ -49,3 +49,14 @@ input[type="number"]::-webkit-outer-spin-button {
     background-color: $brand-01 !important;
   }
 }
+
+.slider .slide {
+  height: calc(100vh - 48px);
+  div {
+    height: 100%;
+    width: 100%;
+    background-size: contain !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+}

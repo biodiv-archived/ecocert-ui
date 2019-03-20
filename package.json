@@ -29,6 +29,7 @@
     "react-notify-toast": "^0.5.0",
     "react-reactive-form": "^1.0.28",
     "react-redux": "^6.0.0",
+    "react-responsive-carousel": "^3.1.47",
     "redux": "^4.0.1",
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
